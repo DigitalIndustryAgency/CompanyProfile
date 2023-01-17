@@ -1,0 +1,45 @@
+<section class="menu firmm4_menu1 cid-sk0BN0LxSS" once="menu" id="navbar">
+  <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+    <div class="container">
+      <div class="navbar-brand">
+        <span class="navbar-caption-wrap">
+          <a class="navbar-caption text-white display-5" href="/">LOGO</a>
+        </span>
+      </div>
+
+      <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul
+          class="navbar-nav navbar-right nav-dropdown"
+          data-app-modern-menu="true"
+        >
+          {% for route in routes %}
+            <li class="nav-item">
+              <a
+                class="nav-link link text-white display-4"
+                href="index.html#{{ route.url }}"
+              >
+                {{ route.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</section>
