@@ -1237,4 +1237,28 @@ a {
   transition: 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-/*# sourceMappingURL=style.css.map */
+.logo-image {
+  position: relative;
+  max-width: 70px;
+  height: auto;
+}
+
+.footer_brand_wrap {
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-image.footer {
+  max-width: 85px !important;
+}
+
+@media (max-width:480px) {
+  .logo-image {
+    max-width: 50px;
+  }
+
+  .footer_brand_wrap {
+    display: flex;
+  }
+}

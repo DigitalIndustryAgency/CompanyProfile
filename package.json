@@ -19,5 +19,6 @@
     "gulp-nunjucks-render": "^2.2.3",
     "gulp-prettier": "^4.0.0",
     "gulp-sourcemaps": "^3.0.0"
-  }
+  },
+  "packageManager": "yarn@3.4.1"
 }

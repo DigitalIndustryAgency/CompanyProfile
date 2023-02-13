@@ -10,7 +10,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var Config = {
   routes: [
     {
-      url: '',
+      url: 'navbar',
       title: "Beranda"
     },
     {
@@ -55,6 +55,11 @@ task('lib', () => {
     .pipe(dest('dist/lib'));
 });
 
+task('image', () => {
+  return src('./src/images/**/*.{jpg,png}')
+    .pipe(dest('dist/assets/img'));
+});
+
 task('custom-css', () => {
   return src('./src/custom/**/*.css')
     .pipe(concat('style.min.css'))
@@ -82,6 +87,7 @@ task('build-nunjucks', () => {
 exports.default = series(
 	parallel(
 		task('lib'),
+    task('image'),
     task('custom-css'),
     task('custom-js'),
     task('build-nunjucks')
