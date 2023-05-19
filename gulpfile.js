@@ -19,7 +19,7 @@ task('image', () => {
 task('build-nunjucks', () => {
   return src('src/index.njk')
     // .pipe(data(() => Config))
-    .pipe(nunjucks.compile({ }))
+    .pipe(nunjucks.compile({}))
     .pipe(prettier({ singleQuote: true }))
     .pipe(dest('dist'))
 });
