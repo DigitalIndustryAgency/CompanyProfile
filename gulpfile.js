@@ -2,7 +2,6 @@ var { task, src, dest, series, parallel, watch } = require('gulp');
 var clean = require('gulp-clean');
 var cleanCSS = require('gulp-clean-css');
 var sass = require('gulp-sass')(require('sass'));
-var postcss = require("gulp-postcss");
 var nunjucks = require('gulp-nunjucks');
 var prettier = require('gulp-prettier');
 var sourcemaps = require('gulp-sourcemaps');
@@ -11,20 +10,22 @@ var browserSync = require('browser-sync');
 
 // copy image assets to dist assets
 task('copy-image', () => {
-  return src('src/images/**/*.{jpg,png}')
+  return src('src/assets/images/**/*.{jpg,png}')
     .pipe(dest('dist/assets/img'));
+});
+
+// copy lib to dist assets
+task('copy-lib', () => {
+  return src('./src/assets/lib/**/*.{js,css,map,eot,svg,ttf,woff}')
+    .pipe(dest('dist/assets/lib'));
 });
 
 // build styles
 task('build-styles', () => {
-  var tailwindcss = require('tailwindcss');
-  var autoprefixer = require('autoprefixer');
-
-  return src('src/styles/**/*.scss')
+  return src('src/assets/scss/**/*.scss')
     .pipe(sourcemaps.init({largeFile: true}))
       .pipe(sourcemaps.identityMap())
       .pipe(sass().on("error", sass.logError))
-      .pipe(postcss([tailwindcss('./tailwind.config.js'), autoprefixer()]))
       .pipe(cleanCSS())
     .pipe(sourcemaps.write('../css'))
     .pipe(dest('dist/assets/css'));
@@ -61,8 +62,9 @@ task('browser-reload', (done) => {
 });
 
 task('watch-build', () => {
-  watch('src/images/**/*.{jpg,png}', series(task('copy-image'), task('browser-reload')));
-  watch('src/styles/**/*.scss', series(task('build-styles'), task('browser-reload')));
+  watch('src/assets/images/**/*.{jpg,png}', series(task('copy-image'), task('browser-reload')));
+  watch('./src/lib/**/*.{js,css,map,eot,svg,ttf,woff}', series(task('copy-lib'), task('browser-reload')));
+  watch('src/assets/**/*.scss', series(task('build-styles'), task('browser-reload')));
   watch(['src/index.html', 'src/**/*.html'], series(task('build-nunjucks'), task('browser-reload')));
 });
 
@@ -71,6 +73,7 @@ exports.default = series(
   task('prod-clean-build'),
 	parallel(
     task('copy-image'),
+    task('copy-lib'),
     task('build-styles'),
     task('build-nunjucks')
 	)
@@ -80,7 +83,7 @@ exports.default = series(
 exports.dev = series(
   task('prod-clean-build'),
 	parallel(
-    task('copy-image'), task('build-styles'), task('build-nunjucks')
+    task('copy-image'), task('copy-lib'), task('build-styles'), task('build-nunjucks')
 	),
   task('browser-init'),
   task('watch-build'),
