@@ -2,10 +2,8 @@ var { task, src, dest, series, parallel } = require('gulp');
 var clean = require('gulp-clean');
 
 var cleanCSS = require('gulp-clean-css');
-var concat = require("gulp-concat");
-// var data = require('gulp-data');
-var minify = require('gulp-minify');
 var sass = require('gulp-sass')(require('sass'));
+var postcss = require("gulp-postcss");
 var nunjucks = require('gulp-nunjucks');
 var prettier = require('gulp-prettier');
 var sourcemaps = require('gulp-sourcemaps');
@@ -18,10 +16,14 @@ task('copy-image', () => {
 
 // build styles
 task('build-styles', () => {
+  var tailwindcss = require('tailwindcss');
+  var autoprefixer = require('autoprefixer');
+
   return src('./src/styles/**/*.scss')
     .pipe(sourcemaps.init({largeFile: true}))
       .pipe(sourcemaps.identityMap())
       .pipe(sass().on("error", sass.logError))
+      .pipe(postcss([tailwindcss('./tailwind.config.js'), autoprefixer()]))
       .pipe(cleanCSS())
     .pipe(sourcemaps.write('../css'))
     .pipe(dest('dist/assets/css'));
