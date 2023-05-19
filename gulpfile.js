@@ -63,7 +63,7 @@ task('browser-reload', (done) => {
 
 task('watch-build', () => {
   watch('src/assets/images/**/*.{jpg,png}', series(task('copy-image'), task('browser-reload')));
-  watch('./src/lib/**/*.{js,css,map,eot,svg,ttf,woff}', series(task('copy-lib'), task('browser-reload')));
+  watch('./src/assets/lib/**/*.{js,css,map,eot,svg,ttf,woff}', series(task('copy-lib'), task('browser-reload')));
   watch('src/assets/**/*.scss', series(task('build-styles'), task('browser-reload')));
   watch(['src/index.html', 'src/**/*.html'], series(task('build-nunjucks'), task('browser-reload')));
 });
