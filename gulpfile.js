@@ -1,6 +1,5 @@
 var { task, src, dest, series, parallel } = require('gulp');
 var clean = require('gulp-clean');
-
 var cleanCSS = require('gulp-clean-css');
 var sass = require('gulp-sass')(require('sass'));
 var postcss = require("gulp-postcss");
