@@ -45,23 +45,25 @@ task('prod-clean-build', () => {
   );
 });
 
-task('browser-init', () => {
+task('browser-init', (done) => {
   browserSync.init({
     server: {
       baseDir: "dist"
     },
     port: process.env.PORT || 3000,
   });
+  done();
 });
 
-task('browser-reload', () => {
+task('browser-reload', (done) => {
   browserSync.reload();
+  done();
 });
 
 task('watch-build', () => {
   watch('src/images/**/*.{jpg,png}', series(task('copy-image'), task('browser-reload')));
   watch('src/styles/**/*.scss', series(task('build-styles'), task('browser-reload')));
-  watch('src/**/*.njk', series(task('build-nunjucks'), task('browser-reload')));
+  watch(['src/index.html', 'src/**/*.html'], series(task('build-nunjucks'), task('browser-reload')));
 });
 
 // default
