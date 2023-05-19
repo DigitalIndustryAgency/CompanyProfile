@@ -1,4 +1,6 @@
 var { task, src, dest, series, parallel } = require('gulp');
+var clean = require('gulp-clean');
+
 var cleanCSS = require('gulp-clean-css');
 var concat = require("gulp-concat");
 // var data = require('gulp-data');
@@ -34,14 +36,21 @@ task('custom-js', () => {
 })
 
 task('build-nunjucks', () => {
-  src('src/index.njk')
+  return src('src/index.njk')
     // .pipe(data(() => Config))
     .pipe(nunjucks.compile({ }))
     .pipe(prettier({ singleQuote: true }))
     .pipe(dest('dist'))
 })
 
+task('prod-clean-build', () => {
+  return src("dist", { read: false, allowEmpty: true }).pipe(
+    clean()
+  );
+})
+
 exports.default = series(
+  task('prod-clean-build'),
 	parallel(
 		task('lib'),
     task('image'),
