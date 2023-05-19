@@ -45,7 +45,7 @@ task('prod-clean-build', () => {
   );
 });
 
-task('live-preview', () => {
+task('browser-init', () => {
   browserSync.init({
     server: {
       baseDir: "dist"
@@ -54,14 +54,14 @@ task('live-preview', () => {
   });
 });
 
-task('live-reload', () => {
+task('browser-reload', () => {
   browserSync.reload();
 });
 
 task('watch-build', () => {
-  watch('src/images/**/*.{jpg,png}', series(task('copy-image'), task('live-reload')));
-  watch('src/styles/**/*.scss', series(task('build-styles'), task('live-reload')));
-  watch('src/**/*.njk', series(task('build-nunjucks'), task('live-reload')));
+  watch('src/images/**/*.{jpg,png}', series(task('copy-image'), task('browser-reload')));
+  watch('src/styles/**/*.scss', series(task('build-styles'), task('browser-reload')));
+  watch('src/**/*.njk', series(task('build-nunjucks'), task('browser-reload')));
 });
 
 // default
