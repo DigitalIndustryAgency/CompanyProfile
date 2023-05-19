@@ -71,8 +71,7 @@ exports.default = series(
     task('copy-image'),
     task('build-styles'),
     task('build-nunjucks')
-	),
-  task('watch-build'),
+	)
 );
 
 // dev
