@@ -32,9 +32,9 @@ task('build-styles', () => {
 
 // build nunjucks template
 task('build-nunjucks', () => {
-  return src('src/index.njk')
+  return src('src/index.html')
     // .pipe(data(() => Config))
-    .pipe(nunjucks.compile({}))
+    .pipe(nunjucks.compile())
     .pipe(prettier({ singleQuote: true }))
     .pipe(dest('dist'))
 });
@@ -80,6 +80,6 @@ exports.dev = series(
 	parallel(
     task('copy-image'), task('build-styles'), task('build-nunjucks')
 	),
-  task('live-preview'),
+  task('browser-init'),
   task('watch-build'),
 );
