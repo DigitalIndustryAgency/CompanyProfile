@@ -8,3 +8,18 @@
 <script src="lib/mobirise/js/testimonial-slider.js"></script>
 <script src="lib/formoid/formoid.min.js"></script>
 <script src="assets/js/script-min.js"></script>
+<script type="text/javascript">
+  $("#btn-wa").click(function(){
+    var nama = document.getElementById("name-form").value;
+    var pesan = document.getElementById("message-form").value;
+    var win = window.open('https://api.whatsapp.com/send?phone=6281564912512&text=Halo saya '+nama+', '+pesan);
+
+    if (win) {
+      win.focus();
+    } else {
+      alert('Please allow popups for this website');
+    }
+
+    return false;
+  });
+</script>

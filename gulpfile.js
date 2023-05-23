@@ -56,8 +56,13 @@ task('lib', () => {
 });
 
 task('image', () => {
-  return src('./src/images/**/*.{jpg,png}')
+  return src('./src/images/**/*.{jpg,png,svg}')
     .pipe(dest('dist/assets/img'));
+});
+
+task('documents', () => {
+  return src('./src/documents/**/*.{docx,pdf}')
+    .pipe(dest('dist/assets/doc'));
 });
 
 task('custom-css', () => {
@@ -88,6 +93,7 @@ exports.default = series(
 	parallel(
 		task('lib'),
     task('image'),
+    task('documents'),
     task('custom-css'),
     task('custom-js'),
     task('build-nunjucks')

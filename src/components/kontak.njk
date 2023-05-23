@@ -17,44 +17,22 @@
       </div>
       <div class="col-lg-10 col-md-12 mbr-form" data-form-type="formoid">
         <form
-              method="POST"
-              class="mbr-form form-with-styler"
-              data-form-title="Form Name"
-            >
-          <input
-                type="hidden"
-                name="email"
-                data-form-email="true"
-                value="ucvJvwTwkBYIe2UBsmAMU3Wm4IimR5uAa189h8JMHulZpKT6x4GtV0y99bu4vrri3HFblOyTjIGhtjbvRJJATDE04fE1rMUSMJzIHt8WUGdUM5LmdiFrSys/UrTJX0Q8"
-/>
-          <div class="">
-            <div
-                  hidden="hidden"
-                  data-form-alert=""
-                  class="alert alert-success col-12"
-                >
-                  Thanks for filling out the form!
-                </div>
-            <div
-                  hidden="hidden"
-                  data-form-alert-danger=""
-                  class="alert alert-danger col-12"
-                >
-                  Oops...! some problem!
-                </div>
-          </div>
+          method="POST"
+          class="mbr-form form-with-styler"
+          data-form-title="Form Name"
+        >
           <div class="dragArea row">
             <div
                   class="col-md-5 col-lg-5 col-12 form-group"
                   data-for="email"
                 >
               <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    data-form-field="Email"
+                    type="text"
+                    name="name"
+                    placeholder="Nama"
+                    data-form-field="Name"
                     class="form-control"
-                    id="email-form2-e"
+                    id="name-form"
 />
             </div>
             <div
@@ -63,19 +41,21 @@
                 >
               <input
                     type="text"
-                    name="name"
-                    placeholder="Nama"
-                    data-form-field="Name"
+                    name="message"
+                    placeholder="Pesan Anda"
+                    data-form-field="message"
                     class="form-control"
-                    id="name-form2-e"
+                    id="message-form"
 />
             </div>
             <div class="col-12 col-md-3 col-lg-2">
               <div class="mbr-section-btn">
                 <button
+                      id="btn-wa"
                       type="submit"
                       class="btn btn-md btn-primary display-4"
                     >
+                      <!--https://wa.me/6281234567?text=Halo,%20salam%20kenal-->
                       Kirim
                     </button>
               </div>

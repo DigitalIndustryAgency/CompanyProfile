@@ -1262,3 +1262,10 @@ a {
     display: flex;
   }
 }
+
+.text-top {
+  color: #ffffff;
+  margin-bottom: 20px;
+  line-height: 1.54;
+  font-style: normal;
+}
